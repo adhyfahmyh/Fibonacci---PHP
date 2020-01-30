@@ -32,38 +32,65 @@ for ($i=0; $i<10; $i++) {
             <br>
             <label for="kolom" class="col-1">Kolom</label>
             <input type="text" name="kolom" id="kolom" value="<?php echo $_POST['kolom']?>" class="col-md-2">
-            <!-- <input type="hidden" name="aksi" value="gen"> -->
+            <input type="hidden" name="aksi" value="gen">   
             <br><br>
             <button type="submit" class="btn btn-primary col-md-4">Submit</button>
         </form>
-    </div>
-    <?php
-        // if($_POST['aksi']=='gen'){
-            $sebelum=0;
-            $sekarang=1;
-        // }
-    ?>
-    <table>
-        <th>
-            <tr>
-                <td></td>
-            </tr>
-        </th>
-    </table>
-    <h3>Hasil fibonacci</h3>
-    <?php
-        for($i=0;$i<$_POST['baris'];$i++){
-            for($j=0;$j<$_POST['kolom'];$j++);{
-                if($i==0 && $j==0){
-                    $j+=2;
-                } else {
-                    $hasil = $sekarang + $sebelum;
-                    echo "$hasil, ";
-                    $sebelum = $sekarang;
-                    $sekarang = $hasil;
-                }
+        <?php
+            if($_POST['aksi']=='gen'){
+                $sebelum=0;
+                $sekarang=1;
+            // }
+        ?>
+        <table border="1">
+            <th>Hasil
+                <?php
+                    for($i=0; $i<$_POST['baris']; $i++) {
+                ?>
+                <tr>
+                    <?php
+                        for ($j=0; $j<=$_POST['kolom'] || $j<=$_POST['kolom']; $j++){
+                            if($i == 0 && $j < 2){
+                    ?>
+                            <td>0</td>
+                            <td>1</td>
+                    <?php
+                                $j += 2;
+                            } else {
+                                $hasil = $sekarang + $sebelum;
+                            
+                    ?>
+                    <td>
+                        <?php   
+                                echo($hasil);
+                        ?>
+                    </td>
+                        <?php
+                                $sebelum = $sekarang;
+                                $sekarang = $hasil;
+                            }
+                        }
+                        ?>
+                </tr>
+                <?php
+                    }
             }
-        }
-    ?>
+                ?>
+            </th>
+        </table>
+        
+        <?php
+        // echo "<h3>Hasil</h3>";
+        // for($i=0;$i<$_POST['baris'];$i++){
+        //     $hasil = $sekarang + $sebelum;
+        //     echo "$hasil, ";
+        //     $sebelum = $sekarang;
+        //     $sekarang = $hasil;
+        // }
+        // if ($hasil == 0) {
+        //     echo "Silahkan masukan angka";
+        // }
+        ?>
+    </div>
 </body>
 </html>
